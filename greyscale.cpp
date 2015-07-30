@@ -23,32 +23,32 @@ void greyscaleSpread(cv::Mat& img, Color c) {
 	}
 	// Main loop:
 	for(int i = 0; i < img.rows; i++) {
-    	unsigned char* Mi = img.ptr<unsigned char>(i);  // Pointer to row (BGR)
-    	for(int j = 0; j < img.cols*3; j+=3)
-        	Mi[j+dest1] = Mi[j+dest2] = Mi[j+src];
-    }
+		unsigned char* Mi = img.ptr<unsigned char>(i);  // Pointer to row (BGR)
+		for(int j = 0; j < img.cols*3; j+=3)
+			Mi[j+dest1] = Mi[j+dest2] = Mi[j+src];
+	}
 }
 
 
 void greyscaleAVG(cv::Mat& img) {
 	for(int i = 0; i < img.rows; i++) {
-    	unsigned char* Mi = img.ptr<unsigned char>(i); // Pointer to row
-    	for(int j = 0; j < img.cols*3; j+=3) {
-    		unsigned int avg = (Mi[j]+Mi[j+1]+Mi[j+2])/3;
-        	Mi[j] = Mi[j+1] = Mi[j+2] = avg;
-        }
+		unsigned char* Mi = img.ptr<unsigned char>(i); // Pointer to row
+		for(int j = 0; j < img.cols*3; j+=3) {
+			unsigned int avg = (Mi[j]+Mi[j+1]+Mi[j+2])/3;
+			Mi[j] = Mi[j+1] = Mi[j+2] = avg;
+		}
 	}
 }
 
 
 void greyscaleWeighted(cv::Mat& img) {
 	for(int i = 0; i < img.rows; i++) {
-    	unsigned char* Mi = img.ptr<unsigned char>(i); // Pointer to row
-    	for(int j = 0; j < img.cols*3; j+=3) {
-    		double wSum = 0.0722*Mi[j] + 0.7152*Mi[j+1]+ 0.2126*Mi[j+2]; // BGR
-    		// Saturate:
-    		wSum = std::fmax(0, std::fmin(wSum, 255));
-        	Mi[j] = Mi[j+1] = Mi[j+2] = (unsigned char) wSum;
-        }
+		unsigned char* Mi = img.ptr<unsigned char>(i); // Pointer to row
+		for(int j = 0; j < img.cols*3; j+=3) {
+			double wSum = 0.0722*Mi[j] + 0.7152*Mi[j+1]+ 0.2126*Mi[j+2]; // BGR
+			// Saturate:
+			wSum = std::fmax(0, std::fmin(wSum, 255));
+			Mi[j] = Mi[j+1] = Mi[j+2] = (unsigned char) wSum;
+		}
 	}
 }
