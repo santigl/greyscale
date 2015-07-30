@@ -8,9 +8,10 @@
 
 void displayUsage(std::ostream& os) {
 	os << "USAGE: ";
-	os << "./greyscale IMAGE -[abgrw]" << std::endl;
+	os << "./greyscale IMAGE -[abglrw]" << std::endl;
 	os << "Filters:" << std::endl;
 	os << "\t a: Average " << std::endl;
+	os << "\t l: Lightness" << std::endl;
 	os << "\t Spread" << std::endl;
 	os << "\t\t b: Blue" << std::endl;
 	os << "\t\t g: Green" << std::endl;
