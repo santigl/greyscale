@@ -35,7 +35,21 @@ void greyscaleAVG(cv::Mat& img) {
 		unsigned char* Mi = img.ptr<unsigned char>(i); // Pointer to row
 		for(int j = 0; j < img.cols*3; j+=3) {
 			unsigned int avg = (Mi[j]+Mi[j+1]+Mi[j+2])/3;
-			Mi[j] = Mi[j+1] = Mi[j+2] = avg;
+			Mi[j] = Mi[j+1] = Mi[j+2] = (unsigned char) avg;
+		}
+	}
+}
+
+
+void greyscaleLightness(cv::Mat& img) {
+	for(int i = 0; i < img.rows; i++) {
+		unsigned char* Mi = img.ptr<unsigned char>(i); // Pointer to row
+		for(int j = 0; j < img.cols*3; j+=3) {
+			unsigned int min = std::min(Mi[j], std::min(Mi[j+1], Mi[j+2]));
+			unsigned int max = std::max(Mi[j], std::max(Mi[j+1], Mi[j+2]));
+			unsigned int avg = (min+max)/2;
+
+			Mi[j] = Mi[j+1] = Mi[j+2] = (unsigned char) avg;
 		}
 	}
 }

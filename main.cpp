@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 
 	// Running the filters...					
 	int opt;
-	while ( (opt = getopt(argc, argv, "abgrw")) != -1) {
+	while ( (opt = getopt(argc, argv, "abglrw")) != -1) {
 		if (opt == '?') {
 			std::cout << "Unknown option: '" << char(optopt) << "'!" << std::endl;
 				break;
@@ -58,6 +58,10 @@ int main(int argc, char* argv[]) {
 		if (opt == 'a') {
 			greyscaleAVG(m);
 			prefix = "AVG";
+		}
+		else if (opt == 'l') {
+			greyscaleLightness(m);
+			prefix = "Light";
 		}
 		else if (opt == 'r') {
 			greyscaleSpread(m, RED);

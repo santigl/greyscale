@@ -4,8 +4,9 @@
 
 enum Color {BLUE, GREEN, RED}; // cv::Mat uses BGR order.
 
-void greyscaleSpread(cv::Mat& img, Color);
 void greyscaleAVG(cv::Mat& img);
+void greyscaleLightness(cv::Mat& img);
+void greyscaleSpread(cv::Mat& img, Color);
 void greyscaleWeighted(cv::Mat&);
 
 #endif
